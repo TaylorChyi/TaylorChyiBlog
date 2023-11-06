@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="R0CWCrwDwg3po6TrVRgjsPhFinNx58QUoDexrwODtp0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-flash.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"taylorchyi.xyz","root":"/","images":"/images","scheme":"Gemini","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="时间：2023-04-18标签： #Java #抽象类 #面向对象 #封装 #设计原则   一定程度上，我们声明一个类为抽象类，是为了防止客户端程序员对这个类进行实例化的一种防范手段。除此之外，还有别的使用抽象类的目的么？  将一个类声明为抽象类可以阻止客户端程序员直接实例化这个类。这样做的目的是表明这个类只能作为其他类的基类，而不能直接使用。此外，抽象类还有以下作用：  提供共享实现：抽象类可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抽象类的目的和作用">
+<meta property="og:url" content="http://taylorchyi.xyz/2023/04/19/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E7%9B%AE%E7%9A%84%E5%92%8C%E4%BD%9C%E7%94%A8/index.html">
+<meta property="og:site_name" content="Taylor Chyi&#39;s Blog">
+<meta property="og:description" content="时间：2023-04-18标签： #Java #抽象类 #面向对象 #封装 #设计原则   一定程度上，我们声明一个类为抽象类，是为了防止客户端程序员对这个类进行实例化的一种防范手段。除此之外，还有别的使用抽象类的目的么？  将一个类声明为抽象类可以阻止客户端程序员直接实例化这个类。这样做的目的是表明这个类只能作为其他类的基类，而不能直接使用。此外，抽象类还有以下作用：  提供共享实现：抽象类可以">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-04-18T23:00:00.000Z">
+<meta property="article:modified_time" content="2023-04-19T03:42:47.762Z">
+<meta property="article:author" content="Taylor Chyi">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="设计原则">
+<meta property="article:tag" content="抽象类">
+<meta property="article:tag" content="封装">
+<meta property="article:tag" content="面向对象">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://taylorchyi.xyz/2023/04/19/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E7%9B%AE%E7%9A%84%E5%92%8C%E4%BD%9C%E7%94%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://taylorchyi.xyz/2023/04/19/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E7%9B%AE%E7%9A%84%E5%92%8C%E4%BD%9C%E7%94%A8/","path":"2023/04/19/抽象类的目的和作用/","title":"抽象类的目的和作用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>抽象类的目的和作用 | Taylor Chyi's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Taylor Chyi's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">203</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">105</span></a></li>
+        <li class="menu-item menu-item-curriculum-vitae"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>Curriculum Vitae</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Taylor Chyi"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Taylor Chyi</p>
+  <div class="site-description" itemprop="description">Happiness belongs to those who are sufficient unto themselves.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">203</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TaylorChyi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TaylorChyi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:taylor_chyi@icloud.com" title="E-Mail → mailto:taylor_chyi@icloud.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100036259014262" title="FaceBook → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100036259014262" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FaceBook</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/tianyue-qi-61b415207/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;tianyue-qi-61b415207&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/TaylorChyi" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;TaylorChyi" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode.com/TaylorChyi" title="Leetcode → https:&#x2F;&#x2F;leetcode.com&#x2F;TaylorChyi" rel="noopener" target="_blank"><i class="fab fa-steam fa-fw"></i>Leetcode</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-child fa-fw"></i>
+      Friends
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://michaelchen.xyz/" title="https:&#x2F;&#x2F;michaelchen.xyz" rel="noopener" target="_blank">Michael Chen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mhsfire.cn/" title="https:&#x2F;&#x2F;mhsfire.cn" rel="noopener" target="_blank">Hansel Ma</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://taylorchyi.xyz/2023/04/19/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E7%9B%AE%E7%9A%84%E5%92%8C%E4%BD%9C%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Taylor Chyi">
+      <meta itemprop="description" content="Happiness belongs to those who are sufficient unto themselves.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Taylor Chyi's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          抽象类的目的和作用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-04-19 00:00:00 / Modified: 04:42:47" itemprop="dateCreated datePublished" datetime="2023-04-19T00:00:00+01:00">2023-04-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>时间：2023-04-18<br>标签： #Java #抽象类 #面向对象 #封装 #设计原则</p>
+<hr>
+<blockquote>
+<p>一定程度上，我们声明一个类为抽象类，是为了防止客户端程序员对这个类进行实例化的一种防范手段。除此之外，还有别的使用抽象类的目的么？</p>
+</blockquote>
+<p>将一个类声明为抽象类可以阻止客户端程序员直接实例化这个类。这样做的目的是表明这个类只能作为其他类的基类，而不能直接使用。此外，抽象类还有以下作用：</p>
+<ol>
+<li><strong>提供共享实现</strong>：抽象类可以包含一些共享的状态（属性）和方法实现，这些代码可以被子类继承和复用。这样，我们可以把一些通用的功能放在抽象类中，减少重复代码，提高代码的可维护性。</li>
+<li><strong>定义接口规范</strong>：抽象类可以包含抽象方法，这些方法定义了子类应该实现的接口规范。通过抽象方法，我们可以明确地表示子类需要实现哪些方法，以满足特定的功能需求。</li>
+<li><strong>实现多态</strong>：抽象类可以作为一种多态机制的实现手段。通过让子类重写抽象类中的方法，我们可以在运行时通过抽象类引用实际的子类对象，实现动态绑定和多态行为。</li>
+<li><strong>模板方法模式</strong>：抽象类可以实现模板方法模式，这是一种行为设计模式。在这种模式中，抽象类定义了一个算法的框架，将一些具体的实现步骤延迟到子类中。这样，子类可以在不改变算法结构的情况下，重定义某些特定的实现步骤。</li>
+</ol>
+<p>总之，抽象类除了防止直接实例化之外，还有很多其他作用。它可以用于提供共享实现、定义接口规范、实现多态以及实现模板方法模式等。在设计类结构时，我们可以根据实际需求选择使用抽象类。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" rel="tag"><i class="fa fa-tag"></i> 设计原则</a>
+              <a href="/tags/%E6%8A%BD%E8%B1%A1%E7%B1%BB/" rel="tag"><i class="fa fa-tag"></i> 抽象类</a>
+              <a href="/tags/%E5%B0%81%E8%A3%85/" rel="tag"><i class="fa fa-tag"></i> 封装</a>
+              <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag"><i class="fa fa-tag"></i> 面向对象</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/04/19/%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%EF%BC%88Enumerate%EF%BC%89%E7%9A%84%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8/" rel="prev" title="枚举类型（Enumerate）的实际应用">
+                  <i class="fa fa-chevron-left"></i> 枚举类型（Enumerate）的实际应用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/04/19/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%A8%8B%E5%BA%8F%E5%91%98%E6%A6%82%E5%BF%B5/" rel="next" title="客户端程序员概念">
+                  客户端程序员概念 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fab fa-apple"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Taylor Chyi</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="250" alpha="0.5" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+  
+
+
+
+
+
+</body>
+</html>

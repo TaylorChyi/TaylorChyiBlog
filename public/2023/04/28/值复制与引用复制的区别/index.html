@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="R0CWCrwDwg3po6TrVRgjsPhFinNx58QUoDexrwODtp0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-flash.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"taylorchyi.xyz","root":"/","images":"/images","scheme":"Gemini","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="时间：2023-04-27标签： #Java #值复制 #引用复制 #示例  值复制和引用复制是在操作变量和对象时的两种不同方式。以下是它们之间的根本区别： 值复制（Value Copy）：值复制是指将一个变量的值复制到另一个变量。在这种情况下，两个变量拥有相同的值，但它们在内存中位于不同的位置。它们互不影响，对其中一个变量的操作不会影响另一个变量。值复制通常用于基本数据类型（如 int，floa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="值复制与引用复制的区别">
+<meta property="og:url" content="http://taylorchyi.xyz/2023/04/28/%E5%80%BC%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%BC%95%E7%94%A8%E5%A4%8D%E5%88%B6%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:site_name" content="Taylor Chyi&#39;s Blog">
+<meta property="og:description" content="时间：2023-04-27标签： #Java #值复制 #引用复制 #示例  值复制和引用复制是在操作变量和对象时的两种不同方式。以下是它们之间的根本区别： 值复制（Value Copy）：值复制是指将一个变量的值复制到另一个变量。在这种情况下，两个变量拥有相同的值，但它们在内存中位于不同的位置。它们互不影响，对其中一个变量的操作不会影响另一个变量。值复制通常用于基本数据类型（如 int，floa">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-04-27T23:00:00.000Z">
+<meta property="article:modified_time" content="2023-04-28T04:11:41.863Z">
+<meta property="article:author" content="Taylor Chyi">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="示例">
+<meta property="article:tag" content="值复制">
+<meta property="article:tag" content="引用复制">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://taylorchyi.xyz/2023/04/28/%E5%80%BC%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%BC%95%E7%94%A8%E5%A4%8D%E5%88%B6%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://taylorchyi.xyz/2023/04/28/%E5%80%BC%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%BC%95%E7%94%A8%E5%A4%8D%E5%88%B6%E7%9A%84%E5%8C%BA%E5%88%AB/","path":"2023/04/28/值复制与引用复制的区别/","title":"值复制与引用复制的区别"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>值复制与引用复制的区别 | Taylor Chyi's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Taylor Chyi's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">203</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">105</span></a></li>
+        <li class="menu-item menu-item-curriculum-vitae"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>Curriculum Vitae</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Taylor Chyi"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Taylor Chyi</p>
+  <div class="site-description" itemprop="description">Happiness belongs to those who are sufficient unto themselves.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">203</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TaylorChyi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TaylorChyi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:taylor_chyi@icloud.com" title="E-Mail → mailto:taylor_chyi@icloud.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100036259014262" title="FaceBook → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100036259014262" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FaceBook</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/tianyue-qi-61b415207/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;tianyue-qi-61b415207&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/TaylorChyi" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;TaylorChyi" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode.com/TaylorChyi" title="Leetcode → https:&#x2F;&#x2F;leetcode.com&#x2F;TaylorChyi" rel="noopener" target="_blank"><i class="fab fa-steam fa-fw"></i>Leetcode</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-child fa-fw"></i>
+      Friends
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://michaelchen.xyz/" title="https:&#x2F;&#x2F;michaelchen.xyz" rel="noopener" target="_blank">Michael Chen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mhsfire.cn/" title="https:&#x2F;&#x2F;mhsfire.cn" rel="noopener" target="_blank">Hansel Ma</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://taylorchyi.xyz/2023/04/28/%E5%80%BC%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%BC%95%E7%94%A8%E5%A4%8D%E5%88%B6%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Taylor Chyi">
+      <meta itemprop="description" content="Happiness belongs to those who are sufficient unto themselves.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Taylor Chyi's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          值复制与引用复制的区别
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-04-28 00:00:00 / Modified: 05:11:41" itemprop="dateCreated datePublished" datetime="2023-04-28T00:00:00+01:00">2023-04-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>时间：2023-04-27<br>标签： #Java #值复制 #引用复制 #示例</p>
+<hr>
+<p>值复制和引用复制是在操作变量和对象时的两种不同方式。以下是它们之间的根本区别：</p>
+<p>值复制（Value Copy）：<br>值复制是指将一个变量的值复制到另一个变量。在这种情况下，两个变量拥有相同的值，但它们在内存中位于不同的位置。它们互不影响，对其中一个变量的操作不会影响另一个变量。值复制通常用于基本数据类型（如 int，float，double 等）。</p>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> b = a; <span class="comment">// 值复制</span></span><br><span class="line">b = <span class="number">20</span>;</span><br><span class="line">System.out.println(a); <span class="comment">// 输出：10</span></span><br><span class="line">System.out.println(b); <span class="comment">// 输出：20</span></span><br></pre></td></tr></table></figure>
+
+<p>引用复制（Reference Copy）：<br>引用复制是指将一个对象的引用复制到另一个对象。在这种情况下，两个变量指向内存中的同一个对象，因此它们共享相同的数据。对其中一个变量的操作会影响另一个变量，因为它们实际上引用的是同一个对象。引用复制通常用于对象类型（如自定义类，集合等）。</p>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list1 = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">list1.add(<span class="number">1</span>);</span><br><span class="line">list1.add(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">List&lt;Integer&gt; list2 = list1; <span class="comment">// 引用复制</span></span><br><span class="line">list2.add(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(list1); <span class="comment">// 输出：[1, 2, 3]</span></span><br><span class="line">System.out.println(list2); <span class="comment">// 输出：[1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>list2</code> 是 <code>list1</code> 的引用复制。它们都指向内存中的同一个对象，因此对 <code>list2</code> 的操作（添加元素 3）也影响了 <code>list1</code>。</p>
+<p>总之，值复制与引用复制的根本区别在于它们操作变量和对象的方式。值复制创建了两个独立的变量，它们具有相同的值，但不会互相影响。而引用复制让两个变量指向同一个对象，它们共享相同的数据，对其中一个的操作会影响另一个。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+              <a href="/tags/%E7%A4%BA%E4%BE%8B/" rel="tag"><i class="fa fa-tag"></i> 示例</a>
+              <a href="/tags/%E5%80%BC%E5%A4%8D%E5%88%B6/" rel="tag"><i class="fa fa-tag"></i> 值复制</a>
+              <a href="/tags/%E5%BC%95%E7%94%A8%E5%A4%8D%E5%88%B6/" rel="tag"><i class="fa fa-tag"></i> 引用复制</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/04/28/%E5%8D%95%E7%8B%AC%E7%9A%84%E5%B7%A5%E5%8E%82%E7%B1%BB%20(Separate%20Factory%20Class)/" rel="prev" title="单独的工厂类 (Separate Factory Class)">
+                  <i class="fa fa-chevron-left"></i> 单独的工厂类 (Separate Factory Class)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/04/28/%E4%BB%8E%E5%8E%86%E5%8F%B2%E7%9A%84%E8%A7%92%E5%BA%A6%E6%9D%A5%E5%8E%BB%E8%A7%A3%E9%87%8A%E4%B8%8B%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89Collection%20%E5%92%8CCollections,%20Path,%20Paths,%20Array,%20Arrays%E8%BF%99%E4%BA%9B%E8%BF%99%E4%B9%88%E7%9B%B8%E4%BC%BC%E8%80%8C%E4%B8%8D%E8%83%BD%E4%BB%8E%E5%90%8D%E7%A7%B0%E4%B8%8A%E4%B8%80%E4%B8%8B%E5%AD%90%E5%88%86%E5%88%AB%E4%BA%8C%E8%80%85%E7%9A%84%E7%B1%BB%E5%90%8D%E8%A2%AB%E8%AE%BE%E8%AE%A1%E5%9C%A8java%E4%B8%AD%E4%B9%88%EF%BC%9F/" rel="next" title="从历史的角度来去解释下，为什么要有Collection 和Collections, Path, Paths, Array, Arrays这些这么相似而不能从名称上一下子分别二者的类名被设计在java中么？">
+                  从历史的角度来去解释下，为什么要有Collection 和Collections, Path, Paths, Array, Arrays这些这么相似而不能从名称上一下子分别二者的类名被设计在java中么？ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fab fa-apple"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Taylor Chyi</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="250" alpha="0.5" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":"forest","js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+  
+
+
+
+
+
+</body>
+</html>
